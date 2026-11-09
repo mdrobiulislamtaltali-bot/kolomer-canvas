@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123d32">
+<title>কলমের ক্যানভাস | গল্পের ভাষায় দ্বীনের বার্তা</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap');
+:root{--green:#123d32;--deep:#0b2923;--gold:#c7a45b;--cream:#f7f4ec;--ink:#202b27;--muted:#69756f;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font-family:'Hind Siliguri',sans-serif;line-height:1.7}
+a{color:inherit;text-decoration:none}.top{background:var(--deep);color:#e9e3d5;text-align:center;padding:8px 14px;font-size:14px;letter-spacing:.2px}
+header{background:var(--green);color:white;padding:22px 5vw 18px;border-bottom:3px solid var(--gold)}
+.head{max-width:1120px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:13px}.mark{width:52px;height:52px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:27px}
+.brand h1{font-family:'Noto Serif Bengali',serif;font-size:29px;line-height:1.2;margin:0}.brand p{margin:4px 0 0;color:#d9dfd7;font-size:13px}
+nav{display:flex;gap:19px;flex-wrap:wrap;font-size:15px}nav a{color:#f5f1e8}nav a:hover{color:#e2c47f}
+.hero{background:linear-gradient(120deg,rgba(8,37,30,.95),rgba(18,61,50,.88)),radial-gradient(circle at 80% 30%,#597b60,#123d32);color:white;padding:74px 5vw 68px;text-align:center}
+.hero-inner{max-width:850px;margin:auto}.eyebrow{color:#e4c77f;letter-spacing:2px;font-size:13px}.hero h2{font:600 clamp(30px,5vw,50px)/1.35 'Noto Serif Bengali',serif;margin:12px 0}.hero p{color:#e4e9e3;font-size:18px;margin:0 auto 26px;max-width:650px}
+.btn{display:inline-block;background:var(--gold);color:#1b2b24;padding:11px 24px;border-radius:4px;font-weight:700}.btn:hover{filter:brightness(1.08)}
+.wrap{max-width:1120px;margin:auto;padding:54px 5vw}.section-title{text-align:center;margin-bottom:28px}.section-title span{color:#9b7a37;font-size:13px;letter-spacing:1.5px}.section-title h2{font:600 29px 'Noto Serif Bengali',serif;color:var(--green);margin:5px 0}.section-title p{color:var(--muted);margin:0}
+.tools{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:0 0 22px}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid #d8d1c2;background:#fff;padding:7px 14px;border-radius:30px;font:inherit;cursor:pointer}.filter.active,.filter:hover{background:var(--green);color:white;border-color:var(--green)}
+.search{padding:10px 14px;border:1px solid #d8d1c2;border-radius:5px;min-width:min(100%,250px);font:inherit;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;border:1px solid #e9e3d7;border-radius:7px;overflow:hidden;box-shadow:0 7px 22px #173b2b0b;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #173b2b16}.card-top{height:125px;background:linear-gradient(135deg,#1b5544,#0d3028);display:flex;align-items:center;justify-content:center;color:#dfc27b;font-size:36px}.card-body{padding:18px}.tag{color:#987630;font-size:13px;font-weight:600}.card h3{font:600 20px 'Noto Serif Bengali',serif;color:var(--green);margin:5px 0 8px}.card p{color:#66716b;margin:0 0 13px;font-size:15px}.read{color:#916f2c;font-weight:700;font-size:14px}
+.empty{display:none;text-align:center;color:var(--muted);padding:30px}
+.video{background:#eae5d9}.video-box{max-width:760px;margin:auto;background:var(--deep);color:white;padding:34px;border-radius:8px;text-align:center}.play{font-size:44px;color:var(--gold)}.video-box h3{font:600 23px 'Noto Serif Bengali',serif;margin:8px}.video-box p{color:#d8e0da;margin:0}
+.about{display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:center}.about-badge{background:var(--green);color:var(--gold);min-height:190px;display:grid;place-items:center;border-radius:8px;font-size:54px}.about h2{font:600 27px 'Noto Serif Bengali',serif;color:var(--green);margin:0 0 8px}.about p{color:#5e6b64;margin:0 0 8px}
+.quote{background:#f0eadc;border-left:4px solid var(--gold);padding:18px 22px;margin-top:24px;font:500 19px 'Noto Serif Bengali',serif;color:var(--green)}
+footer{background:var(--deep);color:#d9e1db;text-align:center;padding:28px 5vw}footer strong{font:600 22px 'Noto Serif Bengali',serif;color:#e4c77f}footer p{margin:5px 0;font-size:14px}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.about-badge{min-height:120px}nav{gap:12px}}
+@media(max-width:560px){header{padding:17px 5vw}.brand h1{font-size:24px}.mark{width:45px;height:45px}.hero{padding:55px 6vw}.hero p{font-size:16px}.wrap{padding:42px 5vw}.grid{grid-template-columns:1fr}.tools{align-items:stretch}.search{width:100%}.section-title h2{font-size:25px}}
+</style>
+</head>
+<body>
+<div class="top">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+<header>
+ <div class="head">
+  <a class="brand" href="#home"><div class="mark">✒</div><div><h1>কলমের ক্যানভাস</h1><p>গল্পের ভাষায় দ্বীনের বার্তা</p></div></a>
+  <nav><a href="#home">হোম</a><a href="#stories">গল্প ও লেখা</a><a href="#video">ভিডিও</a><a href="#about">লেখক পরিচিতি</a></nav>
+ </div>
+</header>
+<main>
+<section class="hero" id="home"><div class="hero-inner">
+ <div class="eyebrow">শব্দ • ভাবনা • আত্মশুদ্ধি</div>
+ <h2>শব্দের তুলিতে সত্য ও সুন্দরের প্রকাশ</h2>
+ <p>গল্প, প্রবন্ধ, নসিহত ও জীবনের শিক্ষণীয় কথায়—একটু থামা, ভাবা এবং রবের পথে ফিরে আসার ক্ষুদ্র প্রয়াস।</p>
+ <a class="btn" href="#stories">লেখাগুলো পড়ুন</a>
+</div></section>
+<section class="wrap" id="stories">
+ <div class="section-title"><span>আমাদের প্রকাশনা</span><h2>গল্প ও লেখালেখি</h2><p>পড়ুন, ভাবুন, জীবনে ধারণ করুন।</p></div>
+ <div class="tools"><div class="filters">
+  <button class="filter active" data-filter="all">সব লেখা</button><button class="filter" data-filter="গল্প">ইসলামিক গল্প</button><button class="filter" data-filter="নসিহত">নসিহত</button><button class="filter" data-filter="প্রবন্ধ">প্রবন্ধ</button>
+ </div><input class="search" id="search" type="search" placeholder="লেখা খুঁজুন..."></div>
+ <div class="grid" id="cards">
+  <article class="card" data-category="গল্প"><div class="card-top">☾</div><div class="card-body"><span class="tag">ইসলামিক গল্প</span><h3>একটি ছোট্ট ভালো কাজ</h3><p>মানুষের জীবনে ছোট্ট একটি ভালো কাজও কত বড় পরিবর্তনের সূচনা করতে পারে—একটি শিক্ষণীয় গল্পের ভাবনা।</p><a class="read" href="#about">শীঘ্রই পড়ুন →</a></div></article>
+  <article class="card" data-category="নসিহত"><div class="card-top">۞</div><div class="card-body"><span class="tag">নসিহত</span><h3>ফিরে আসার দরজা খোলা</h3><p>ভুল হয়ে গেলে হতাশ না হয়ে আন্তরিকভাবে তওবা করা এবং ভালো পথে ফিরে আসার অনুপ্রেরণা।</p><a class="read" href="#about">শীঘ্রই পড়ুন →</a></div></article>
+  <article class="card" data-category="প্রবন্ধ"><div class="card-top">✧</div><div class="card-body"><span class="tag">ইসলামিক প্রবন্ধ</span><h3>সময়: জীবনের অমূল্য সম্পদ</h3><p>সময়কে কীভাবে কল্যাণকর কাজে ব্যয় করা যায়—কুরআন-সুন্নাহর আলোকে একটি আলোচনার বিষয়।</p><a class="read" href="#about">শীঘ্রই পড়ুন →</a></div></article>
+ </div><div class="empty" id="empty">এই নামে কোনো লেখা পাওয়া যায়নি।</div>
+</section>
+<section class="video" id="video"><div class="wrap">
+ <div class="section-title"><span>শুনুন ও দেখুন</span><h2>ভিডিও গল্প</h2><p>লেখার পাশাপাশি কণ্ঠে গল্প ও ভাবনার আয়োজন।</p></div>
+ <div class="video-box"><div class="play">▶</div><h3>ভিডিও গল্প আসছে</h3><p>এখানে তোমার প্রকাশিত ভিডিওর লিংক বা এমবেড যুক্ত করা যাবে।</p></div>
+</div></section>
+<section class="wrap" id="about"><div class="about">
+ <div class="about-badge">✒</div><div><span class="tag">লেখক পরিচিতি</span><h2>মুহাম্মাদ রবিউল ইসলাম</h2><p>কলমের ক্যানভাস একটি ইসলামিক সাহিত্য ও গল্পভিত্তিক উদ্যোগ। এখানে প্রকাশিত হবে ইসলামিক গল্প, শিক্ষণীয় ঘটনা, প্রবন্ধ, নসিহত এবং আত্মশুদ্ধির অনুপ্রেরণামূলক লেখা।</p><p>আমাদের প্রত্যাশা—প্রতিটি শব্দ পাঠকের মনে ভালো চিন্তা, সুন্দর আমল এবং সত্যের প্রতি ভালোবাসা জাগিয়ে তুলুক।</p></div>
+ </div><div class="quote">“কলমের প্রতিটি আঁচড় হোক সত্য, কল্যাণ ও সুন্দর জীবনের আহ্বান।”</div>
+</section>
+</main>
+<footer><strong>কলমের ক্যানভাস</strong><p>গল্পের ভাষায় দ্বীনের বার্তা</p><p>© ২০২৬ কলমের ক্যানভাস · সর্বস্বত্ব সংরক্ষিত</p></footer>
+<script>
+const buttons=[...document.querySelectorAll('.filter')], cards=[...document.querySelectorAll('.card')], search=document.getElementById('search'), empty=document.getElementById('empty');
+let category='all';
+function update(){let q=search.value.trim().toLowerCase(), shown=0;cards.forEach(c=>{let ok=(category==='all'||c.dataset.category===category)&&c.innerText.toLowerCase().includes(q);c.style.display=ok?'':'none';if(ok)shown++});empty.style.display=shown?'none':'block'}
+buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');category=b.dataset.filter;update()}));search.addEventListener('input',update);
+</script>
+</body></html>
