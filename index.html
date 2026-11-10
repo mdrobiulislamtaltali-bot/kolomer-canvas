@@ -1,1 +1,139 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="D1GnCVvdxnm-8bljS6fYs9fJ2vQWx89Pdh-wluTvvWM">
+<meta name="description" content="কলমের ক্যানভাস — গল্পের ভাষায় দ্বীনের বার্তা।">
+<title>কলমের ক্যানভাস | গল্পের ভাষায় দ্বীনের বার্তা</title>
 
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f7f5;color:#26352d;font-family:Arial,sans-serif;line-height:1.8}
+header{background:#123d2b;color:white;text-align:center;padding:30px 15px}
+header h1{margin:0;font-size:30px}
+header p{margin:5px 0}
+nav{background:#fff;padding:12px;text-align:center;box-shadow:0 2px 8px #ddd}
+nav a{color:#174b35;text-decoration:none;margin:0 9px;font-weight:bold}
+.container{max-width:850px;margin:25px auto;padding:0 15px}
+.section{background:white;padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 10px #ddd}
+h2{color:#155337}
+input{width:100%;padding:13px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+.story{border-bottom:1px solid #eee;padding:15px 0}
+.story h3{margin:0;color:#145337}
+.story button,.btn{background:#155337;color:white;border:0;padding:9px 16px;border-radius:7px;cursor:pointer;margin:5px 3px}
+#reader{display:none;white-space:pre-wrap;overflow-wrap:anywhere}
+#reader h2{text-align:center}
+footer{background:#123d2b;color:white;text-align:center;padding:25px}
+.small{font-size:13px;color:#777}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>কলমের ক্যানভাস</h1>
+<p>গল্পের ভাষায় দ্বীনের বার্তা</p>
+</header>
+
+<nav>
+<a href="#home">হোম</a>
+<a href="#stories">ইসলামিক গল্প</a>
+<a href="#author">লেখক পরিচিতি</a>
+</nav>
+
+<main class="container">
+
+<section class="section" id="home">
+<h2>আসসালামু আলাইকুম</h2>
+<p>স্বাগতম কলমের ক্যানভাসে। এখানে গল্পের মাধ্যমে ইসলামের সৌন্দর্য, নৈতিক শিক্ষা ও দ্বীনের বার্তা তুলে ধরা হয়।</p>
+</section>
+
+<section class="section" id="stories">
+<h2>📚 ইসলামিক গল্পসমূহ</h2>
+<input id="search" type="search" placeholder="গল্পের নাম লিখে খুঁজুন...">
+<p id="status">গল্প লোড হচ্ছে...</p>
+<div id="storyList"></div>
+</section>
+
+<section class="section" id="reader">
+<button onclick="closeStory()">← ফিরে যান</button>
+<h2 id="storyTitle"></h2>
+<p id="storyDate" class="small"></p>
+<div id="storyBody"></div>
+<button onclick="shareStory()">শেয়ার করুন</button>
+<button onclick="copyStory()">লিংক কপি</button>
+</section>
+
+<section class="section" id="author">
+<h2>✍️ লেখক পরিচিতি</h2>
+<p><b>নাম:</b> মুহাম্মাদ রবিউল ইসলাম</p>
+<p><b>ঠিকানা:</b> তালতলী, বরগুনা</p>
+<p>ইসলামিক গল্প ও শিক্ষামূলক লেখা প্রকাশের একটি ক্ষুদ্র প্রয়াস।</p>
+<a class="btn" href="https://wa.me/8801411167655" style="display:inline-block;text-decoration:none">WhatsApp যোগাযোগ</a>
+</section>
+
+</main>
+
+<footer>
+<p>© কলমের ক্যানভাস</p>
+<p>গল্পের ভাষায় দ্বীনের বার্তা</p>
+</footer>
+
+<script>
+const USER="mdrobiulislamtaltali-bot";
+const REPO="kolomer-canvas";
+const BRANCH="main";
+
+let stories=[];
+let currentUrl="";
+
+async function loadStories(){
+ const status=document.getElementById("status");
+ const list=document.getElementById("storyList");
+
+ try{
+  const api=`https://data.jsdelivr.com/v1/package/gh/${USER}/${REPO}@${BRANCH}/flat`;
+  const response=await fetch(api);
+
+  if(!response.ok) throw new Error("গল্পের তালিকা পাওয়া যাচ্ছে না");
+
+  const data=await response.json();
+
+  const files=data.files
+   .filter(f=>f.name.startsWith("/stories/") && f.name.endsWith(".md"))
+   .map(f=>f.name);
+
+  if(files.length===0){
+   status.textContent="এখনো কোনো গল্প পাওয়া যায়নি।";
+   return;
+  }
+
+  const results=await Promise.all(files.map(async file=>{
+   try{
+    const url=`https://cdn.jsdelivr.net/gh/${USER}/${REPO}@${BRANCH}${file}`;
+    const res=await fetch(url);
+    if(!res.ok)return null;
+
+    const text=await res.text();
+    const match=text.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+
+    let title=file.split("/").pop().replace(".md","");
+    let date="";
+
+    if(match){
+     const titleMatch=match[1].match(/^title:\s*(.*)$/m);
+     const dateMatch=match[1].match(/^date:\s*(.*)$/m);
+     if(titleMatch)title=titleMatch[1].trim().replace(/^["']|["']$/g,"");
+     if(dateMatch)date=dateMatch[1].trim();
+    }
+
+    return {title,date,body:match?match[2]:text,url};
+   }catch(e){return null;}
+  }));
+
+  stories=results.filter(Boolean);
+
+  stories.sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+  status.textContent=stories.length+"
