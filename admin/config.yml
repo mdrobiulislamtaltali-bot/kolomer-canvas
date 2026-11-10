@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: turbo-github
+  turbo_site_id: 9f3e7dc2-bff9-4eef-9c0d-fc5426b8f50c
   branch: main
 
 media_folder: "uploads"
