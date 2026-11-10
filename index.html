@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#123d32">
+<meta name="description" content="কলমের ক্যানভাস — গল্পের ভাষায় দ্বীনের বার্তা">
 <title>কলমের ক্যানভাস | গল্পের ভাষায় দ্বীনের বার্তা</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap');
@@ -21,8 +22,14 @@ nav{display:flex;gap:19px;flex-wrap:wrap;font-size:15px}nav a{color:#f5f1e8}nav 
 .wrap{max-width:1120px;margin:auto;padding:54px 5vw}.section-title{text-align:center;margin-bottom:28px}.section-title span{color:#9b7a37;font-size:13px;letter-spacing:1.5px}.section-title h2{font:600 29px 'Noto Serif Bengali',serif;color:var(--green);margin:5px 0}.section-title p{color:var(--muted);margin:0}
 .tools{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:0 0 22px}.filters{display:flex;gap:8px;flex-wrap:wrap}.filter{border:1px solid #d8d1c2;background:#fff;padding:7px 14px;border-radius:30px;font:inherit;cursor:pointer}.filter.active,.filter:hover{background:var(--green);color:white;border-color:var(--green)}
 .search{padding:10px 14px;border:1px solid #d8d1c2;border-radius:5px;min-width:min(100%,250px);font:inherit;background:#fff}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;border:1px solid #e9e3d7;border-radius:7px;overflow:hidden;box-shadow:0 7px 22px #173b2b0b;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #173b2b16}.card-top{height:125px;background:linear-gradient(135deg,#1b5544,#0d3028);display:flex;align-items:center;justify-content:center;color:#dfc27b;font-size:36px}.card-body{padding:18px}.tag{color:#987630;font-size:13px;font-weight:600}.card h3{font:600 20px 'Noto Serif Bengali',serif;color:var(--green);margin:5px 0 8px}.card p{color:#66716b;margin:0 0 13px;font-size:15px}.read{color:#916f2c;font-weight:700;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.card{background:white;border:1px solid #e9e3d7;border-radius:7px;overflow:hidden;box-shadow:0 7px 22px #173b2b0b;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px #173b2b16}
+.card-top{height:160px;background:linear-gradient(135deg,#1b5544,#0d3028);display:flex;align-items:center;justify-content:center;color:#dfc27b;font-size:36px;overflow:hidden}
+.card-top img{width:100%;height:100%;object-fit:cover;display:block}.card-body{padding:18px}.tag{color:#987630;font-size:13px;font-weight:600}.card h3{font:600 20px 'Noto Serif Bengali',serif;color:var(--green);margin:5px 0 8px}.card p{color:#66716b;margin:0 0 13px;font-size:15px}.read{color:#916f2c;font-weight:700;font-size:14px;background:none;border:0;padding:0;font:700 14px 'Hind Siliguri',sans-serif;cursor:pointer}
 .empty{display:none;text-align:center;color:var(--muted);padding:30px}
+.reader{display:none;background:#fff;border:1px solid #e9e3d7;border-radius:8px;padding:clamp(18px,4vw,34px);margin:0 0 25px;box-shadow:0 7px 22px #173b2b0b}
+.reader h2{font:600 27px 'Noto Serif Bengali',serif;color:var(--green);margin:0 0 5px}.reader-date{color:var(--muted);font-size:14px;margin-bottom:18px}
+.reader-content{color:var(--ink);overflow-wrap:anywhere}.reader-content p{margin:0 0 16px}.reader-content h1,.reader-content h2,.reader-content h3{font-family:'Noto Serif Bengali',serif;color:var(--green);line-height:1.5}.reader-content img{max-width:100%;height:auto;border-radius:7px}.reader-content blockquote{border-left:4px solid var(--gold);padding:8px 16px;margin:18px 0;background:#f7f4ec}
+.close-reader{background:var(--green);color:white;border:0;border-radius:4px;padding:9px 18px;font:600 15px 'Hind Siliguri',sans-serif;cursor:pointer;margin-top:18px}
 .video{background:#eae5d9}.video-box{max-width:760px;margin:auto;background:var(--deep);color:white;padding:34px;border-radius:8px;text-align:center}.play{font-size:44px;color:var(--gold)}.video-box h3{font:600 23px 'Noto Serif Bengali',serif;margin:8px}.video-box p{color:#d8e0da;margin:0}
 .about{display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:center}.about-badge{background:var(--green);color:var(--gold);min-height:190px;display:grid;place-items:center;border-radius:8px;font-size:54px}.about h2{font:600 27px 'Noto Serif Bengali',serif;color:var(--green);margin:0 0 8px}.about p{color:#5e6b64;margin:0 0 8px}
 .quote{background:#f0eadc;border-left:4px solid var(--gold);padding:18px 22px;margin-top:24px;font:500 19px 'Noto Serif Bengali',serif;color:var(--green)}
@@ -50,12 +57,14 @@ footer{background:var(--deep);color:#d9e1db;text-align:center;padding:28px 5vw}f
  <div class="section-title"><span>আমাদের প্রকাশনা</span><h2>গল্প ও লেখালেখি</h2><p>পড়ুন, ভাবুন, জীবনে ধারণ করুন।</p></div>
  <div class="tools"><div class="filters">
   <button class="filter active" data-filter="all">সব লেখা</button><button class="filter" data-filter="গল্প">ইসলামিক গল্প</button><button class="filter" data-filter="নসিহত">নসিহত</button><button class="filter" data-filter="প্রবন্ধ">প্রবন্ধ</button>
- </div><input class="search" id="search" type="search" placeholder="লেখা খুঁজুন..."></div>
- <div class="grid" id="cards">
-  <article class="card" data-category="গল্প"><div class="card-top">☾</div><div class="card-body"><span class="tag">ইসলামিক গল্প</span><h3>একটি ছোট্ট ভালো কাজ</h3><p>মানুষের জীবনে ছোট্ট একটি ভালো কাজও কত বড় পরিবর্তনের সূচনা করতে পারে—একটি শিক্ষণীয় গল্পের ভাবনা।</p><a class="read" href="#about">শীঘ্রই পড়ুন →</a></div></article>
-  <article class="card" data-category="নসিহত"><div class="card-top">۞</div><div class="card-body"><span class="tag">নসিহত</span><h3>ফিরে আসার দরজা খোলা</h3><p>ভুল হয়ে গেলে হতাশ না হয়ে আন্তরিকভাবে তওবা করা এবং ভালো পথে ফিরে আসার অনুপ্রেরণা।</p><a class="read" href="#about">শীঘ্রই পড়ুন →</a></div></article>
-  <article class="card" data-category="প্রবন্ধ"><div class="card-top">✧</div><div class="card-body"><span class="tag">ইসলামিক প্রবন্ধ</span><h3>সময়: জীবনের অমূল্য সম্পদ</h3><p>সময়কে কীভাবে কল্যাণকর কাজে ব্যয় করা যায়—কুরআন-সুন্নাহর আলোকে একটি আলোচনার বিষয়।</p><a class="read" href="#about">শীঘ্রই পড়ুন →</a></div></article>
- </div><div class="empty" id="empty">এই নামে কোনো লেখা পাওয়া যায়নি।</div>
+ </div><input class="search" id="search" type="search" placeholder="লেখা খুঁজুন..." aria-label="লেখা খুঁজুন"></div>
+ <div class="reader" id="reader" aria-live="polite">
+  <h2 id="reader-title"></h2><div class="reader-date" id="reader-date"></div>
+  <div class="reader-content" id="reader-content"></div>
+  <button class="close-reader" id="close-reader" type="button">গল্পের তালিকায় ফিরুন</button>
+ </div>
+ <div class="grid" id="cards" aria-live="polite"></div>
+ <div class="empty" id="empty">গল্প লোড হচ্ছে...</div>
 </section>
 <section class="video" id="video"><div class="wrap">
  <div class="section-title"><span>শুনুন ও দেখুন</span><h2>ভিডিও গল্প</h2><p>লেখার পাশাপাশি কণ্ঠে গল্প ও ভাবনার আয়োজন।</p></div>
@@ -67,10 +76,245 @@ footer{background:var(--deep);color:#d9e1db;text-align:center;padding:28px 5vw}f
 </section>
 </main>
 <footer><strong>কলমের ক্যানভাস</strong><p>গল্পের ভাষায় দ্বীনের বার্তা</p><p>© ২০২৬ কলমের ক্যানভাস · সর্বস্বত্ব সংরক্ষিত</p></footer>
+
+<!-- Markdown দেখানোর লাইব্রেরি; লেখা নিরাপদ রাখতে DOMPurify ব্যবহার করা হয়েছে -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 <script>
-const buttons=[...document.querySelectorAll('.filter')], cards=[...document.querySelectorAll('.card')], search=document.getElementById('search'), empty=document.getElementById('empty');
-let category='all';
-function update(){let q=search.value.trim().toLowerCase(), shown=0;cards.forEach(c=>{let ok=(category==='all'||c.dataset.category===category)&&c.innerText.toLowerCase().includes(q);c.style.display=ok?'':'none';if(ok)shown++});empty.style.display=shown?'none':'block'}
-buttons.forEach(b=>b.addEventListener('click',()=>{buttons.forEach(x=>x.classList.remove('active'));b.classList.add('active');category=b.dataset.filter;update()}));search.addEventListener('input',update);
+(() => {
+  "use strict";
+
+  const API_URL = "https://api.github.com/repos/mdrobiulislamtaltali-bot/kolomer-canvas/contents/stories?ref=main";
+  const cardsEl = document.getElementById("cards");
+  const emptyEl = document.getElementById("empty");
+  const searchEl = document.getElementById("search");
+  const readerEl = document.getElementById("reader");
+  const readerTitle = document.getElementById("reader-title");
+  const readerDate = document.getElementById("reader-date");
+  const readerContent = document.getElementById("reader-content");
+  const closeReader = document.getElementById("close-reader");
+  const filterButtons = Array.from(document.querySelectorAll(".filter"));
+
+  let stories = [];
+  let activeCategory = "all";
+
+  function parseFrontMatter(markdown, fallbackTitle) {
+    const result = { title: fallbackTitle, date: "", image: "", body: markdown };
+    const match = markdown.match(/^---\s*\r?\n([\s\S]*?)\r?\n---\s*(?:\r?\n|$)/);
+
+    if (!match) return result;
+
+    const front = match[1];
+    result.body = markdown.slice(match[0].length).trim();
+
+    function readField(key) {
+      const line = front.match(new RegExp("^" + key + "\\s*:\\s*(.*)$", "mi"));
+      if (!line) return "";
+      let value = line[1].trim();
+      if ((value.startsWith('"') && value.endsWith('"')) ||
+          (value.startsWith("'") && value.endsWith("'"))) {
+        value = value.slice(1, -1);
+      }
+      return value;
+    }
+
+    result.title = readField("title") || result.title;
+    result.date = readField("date");
+    result.image = readField("image");
+    return result;
+  }
+
+  function plainText(markdown) {
+    return markdown
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/[#>*_`~]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  function imageUrl(path) {
+    if (!path) return "";
+    if (/^https?:\/\//i.test(path)) return path;
+    return path.startsWith("/") ? path : "/" + path.replace(/^\.?\//, "");
+  }
+
+  function formatDate(value) {
+    if (!value) return "";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return new Intl.DateTimeFormat("bn-BD", {
+      year: "numeric", month: "long", day: "numeric"
+    }).format(date);
+  }
+
+  function showReader(story) {
+    readerTitle.textContent = story.title;
+    readerDate.textContent = formatDate(story.date);
+    const markdownHtml = window.marked
+      ? marked.parse(story.body || "")
+      : "<p>" + plainText(story.body || "") + "</p>";
+
+    readerContent.innerHTML = window.DOMPurify
+      ? DOMPurify.sanitize(markdownHtml)
+      : markdownHtml.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "");
+
+    readerEl.style.display = "block";
+    readerEl.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function makeCard(story) {
+    const article = document.createElement("article");
+    article.className = "card";
+    article.dataset.category = "গল্প";
+
+    const top = document.createElement("div");
+    top.className = "card-top";
+
+    if (story.image) {
+      const img = document.createElement("img");
+      img.src = imageUrl(story.image);
+      img.alt = story.title;
+      img.loading = "lazy";
+      img.onerror = () => {
+        top.replaceChildren(document.createTextNode("☾"));
+      };
+      top.appendChild(img);
+    } else {
+      top.textContent = "☾";
+    }
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = "ইসলামিক গল্প";
+
+    const heading = document.createElement("h3");
+    heading.textContent = story.title;
+
+    const excerpt = document.createElement("p");
+    const summary = plainText(story.body);
+    excerpt.textContent = summary.length > 145
+      ? summary.slice(0, 145) + "…"
+      : summary;
+
+    const readButton = document.createElement("button");
+    readButton.className = "read";
+    readButton.type = "button";
+    readButton.textContent = "সম্পূর্ণ পড়ুন →";
+    readButton.addEventListener("click", () => showReader(story));
+
+    body.append(tag, heading, excerpt, readButton);
+    article.append(top, body);
+    return article;
+  }
+
+  function updateStories() {
+    const query = searchEl.value.trim().toLocaleLowerCase("bn");
+    cardsEl.replaceChildren();
+
+    const filtered = stories.filter(story => {
+      const matchesQuery = (story.title + " " + plainText(story.body))
+        .toLocaleLowerCase("bn").includes(query);
+
+      // বর্তমান CMS-এ আলাদা category field নেই; তাই প্রকাশিত সব পোস্ট ইসলামিক গল্প হিসেবে দেখানো হচ্ছে।
+      const matchesCategory = activeCategory === "all" || activeCategory === "গল্প";
+      return matchesQuery && matchesCategory;
+    });
+
+    filtered.forEach(story => cardsEl.appendChild(makeCard(story)));
+
+    if (filtered.length) {
+      emptyEl.style.display = "none";
+    } else {
+      emptyEl.style.display = "block";
+      emptyEl.textContent = stories.length
+        ? "এই নামে কোনো লেখা পাওয়া যায়নি।"
+        : "এখনো কোনো গল্প প্রকাশিত হয়নি।";
+    }
+  }
+
+  async function loadStories() {
+    emptyEl.style.display = "block";
+    emptyEl.textContent = "গল্প লোড হচ্ছে...";
+
+    try {
+      const response = await fetch(API_URL, {
+        headers: { "Accept": "application/vnd.github+json" }
+      });
+
+      if (!response.ok) {
+        throw new Error("GitHub থেকে গল্পের তালিকা পাওয়া যায়নি (" + response.status + ")");
+      }
+
+      const files = await response.json();
+      if (!Array.isArray(files)) {
+        throw new Error("stories ফোল্ডারের তথ্য সঠিক নয়");
+      }
+
+      const markdownFiles = files.filter(file =>
+        file.type === "file" && /\.md$/i.test(file.name)
+      );
+
+      const loaded = await Promise.all(markdownFiles.map(async file => {
+        try {
+          const fileResponse = await fetch(file.download_url);
+          if (!fileResponse.ok) return null;
+
+          const markdown = await fileResponse.text();
+          const fallbackTitle = file.name.replace(/\.md$/i, "").replace(/[-_]/g, " ");
+          const parsed = parseFrontMatter(markdown, fallbackTitle);
+
+          return {
+            title: parsed.title,
+            date: parsed.date,
+            image: parsed.image,
+            body: parsed.body,
+            fileName: file.name
+          };
+        } catch (error) {
+          console.error("একটি গল্প পড়া যায়নি:", file.name, error);
+          return null;
+        }
+      }));
+
+      stories = loaded.filter(Boolean).sort((a, b) => {
+        const dateA = Date.parse(a.date) || 0;
+        const dateB = Date.parse(b.date) || 0;
+        return dateB - dateA;
+      });
+
+      updateStories();
+    } catch (error) {
+      console.error(error);
+      cardsEl.replaceChildren();
+      emptyEl.style.display = "block";
+      emptyEl.textContent =
+        "গল্প লোড করা যাচ্ছে না। ইন্টারনেট সংযোগ বা GitHub-এর stories ফোল্ডার পরীক্ষা করে আবার চেষ্টা করুন।";
+    }
+  }
+
+  searchEl.addEventListener("input", updateStories);
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+      activeCategory = button.dataset.filter;
+      updateStories();
+    });
+  });
+
+  closeReader.addEventListener("click", () => {
+    readerEl.style.display = "none";
+    document.getElementById("stories").scrollIntoView({ behavior: "smooth" });
+  });
+
+  loadStories();
+})();
 </script>
-</body></html>
+</body>
+</html>
